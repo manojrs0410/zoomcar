@@ -1,8 +1,8 @@
-package org.Amazon.seleniumdesign;
+package org.ZoomCar.seleniumdesign;
 
 import org.openqa.selenium.WebElement;
 
-public interface Amazon_Element {
+public interface ZoomCar_Element {
 	
 	public void click (WebElement element);
 	

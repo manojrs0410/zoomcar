@@ -1,26 +1,29 @@
-package org.Amazon.seleniumbase;
+package org.ZoomCar.seleniumbase;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
-import org.Amazon.seleniumdesign.Amazon_Browser;
-import org.Amazon.seleniumdesign.Amazon_Element;
+import org.ZoomCar.seleniumdesign.ZoomCar_Browser;
+import org.ZoomCar.seleniumdesign.ZoomCar_Element;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.Reporter;
 
-public class Amazon_SeleniumBase extends Reporter implements Amazon_Element, Amazon_Browser {
+public class ZoomCar_SeleniumBase extends Reporter implements ZoomCar_Element, ZoomCar_Browser {
 	public WebDriverWait wait;    
 	public static RemoteWebDriver driver;
+
 
 	public void invokeApp(String browser, String url) {
 		 try {
@@ -31,7 +34,8 @@ public class Amazon_SeleniumBase extends Reporter implements Amazon_Element, Ama
 	            }
 	            driver.get(url);
 	            driver.manage().window().maximize();
-	            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
+	            Thread.sleep(5000);
+	            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10000));
 	        } catch (Exception e){
 	         System.err.println(e);    
 	        }
@@ -48,7 +52,7 @@ public class Amazon_SeleniumBase extends Reporter implements Amazon_Element, Ama
 
 	public void click(WebElement element) {
 		try {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         	wait.until(ExpectedConditions.elementToBeClickable(element));
 			element.click();
             reportStep("Clicked on the element", "pass");
@@ -89,6 +93,18 @@ public class Amazon_SeleniumBase extends Reporter implements Amazon_Element, Ama
 
 	public void tabKey(WebElement element, String data) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void leftArrowKey(WebElement element) {
+
+		element.sendKeys(Keys.ARROW_LEFT);		
+		
+	}
+	
+	public void rightArrowKey(WebElement element) {
+
+		element.sendKeys(Keys.ARROW_RIGHT);
 		
 	}
 

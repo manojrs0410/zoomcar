@@ -1,29 +1,40 @@
-package org.Amazon.testcases;
+package org.ZoomCar.testcases;
 
-import org.Amazon.pages.Amazon_HomeWindow;
-import org.Amazon.testngbase.Amazon_TestNg_Base;
+import org.ZoomCar.pages.ZoomCar_HomeWindow;
+import org.ZoomCar.testngbase.ZoomCar_TestNg_Base;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Amazon_TestCase01 extends Amazon_TestNg_Base{
+public class ZoomCar_TestCase01 extends ZoomCar_TestNg_Base{
 	@BeforeTest
 	public void setValues() {
-		excelFileName = "AmazonData";
-		testCaseName = "Amazon_TestCase01";
-        testDescription = "Mobile testCase ";
-        nodes = "Add to Cart Module";
+		
+		testCaseName = "ZoomCar_TestCase01";
+        testDescription = "ZoomCar testCase ";
+        nodes = "Car Module";
         authors = "Manojkumar";
         category = "Smoke";
 	}
 
-	@Test(dataProvider="fetchData")
-	public void loginToUIPath(String userName, String password) throws InterruptedException {
-		
-		new Amazon_HomeWindow(driver)
+	@Test
+	public void ZoomCar_HomeWindow() throws InterruptedException {
 	
-			.enterMobileName()
-			.pressEnterKey()
-			.clickFirstMobileImage();
+	new ZoomCar_HomeWindow(driver)
+	
+			.mouseHoverLocation()
+			.clickSecondLocation()
+			.clickStartDateOfNextMonth()
+			.clickEndDateOfNextMonth()
+			.moveStartDateSlider()
+			.moveEndDateSlider()
+			.clickSearchButton()
+			.clickBestRated()
+			.clickFuelTypePetrol()
+			.clickFastTag()
+			.printNewlyAddedCarNames()
+			.selectMaxUserRatingCar()
+			.clickImageNavigationButton();
 
          
 }

@@ -6,7 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Amazon_DataInputProvider{
+public class ZoomCar_DataInputProvider{
 	
 	public static String[][] getSheet(String dataSheetName) {
 		
