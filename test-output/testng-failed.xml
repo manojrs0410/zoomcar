@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <parameter name="ZoomCar" value="https://www.zoomcar.com/in/chennai"/>
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="org.ZoomCar.testcases.ZoomCar_TestCase01">
+        <methods>
+          <include name="report"/>
+          <include name="beforeMethod"/>
+          <include name="startReport"/>
+          <include name="ZoomCar_HomeWindow"/>
+          <include name="setValues"/>
+          <include name="stopReport"/>
+        </methods>
+      </class> <!-- org.ZoomCar.testcases.ZoomCar_TestCase01 -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
