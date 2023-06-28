@@ -38,8 +38,8 @@ public abstract class Reporter {
 		
 		reporter = new ExtentHtmlReporter("./reports/result_"+currentDateTime+".html");
 		reporter.config().setTheme(Theme.DARK);
-		reporter.config().setDocumentTitle("UNIVERSITY OF CHICAGO - LET'S TALK");
-		reporter.config().setReportName("UNIVERSITY OF CHICAGO - LET'S TALK - AUTOMATION EXECUTION REPORT");
+		reporter.config().setDocumentTitle("Selenium Automation");
+		reporter.config().setReportName("AUTOMATE THE ETRAINS WEBSITE - AUTOMATION EXECUTION REPORT");
 		
 		//reporter.setAppendExisting(false); 
 		extent = new ExtentReports();
@@ -67,14 +67,16 @@ public abstract class Reporter {
 				img = MediaEntityBuilder.createScreenCaptureFromPath
 						("./../reports/images/"+snapNumber+".jpg").build();
 			} catch (IOException e) {
-				
+				System.err.println();
 			}
 		}
     	if(status.equalsIgnoreCase("pass")) {
-    		//node.pass(dec,img);
     		test.pass(dec,img);
     	} else if(status.equalsIgnoreCase("fail")) {
     		test.fail(dec, img); 
+    	}
+    	else if(status.equalsIgnoreCase("info")) {
+    		test.info(dec,img);
     	}
     }
     
@@ -84,7 +86,9 @@ public abstract class Reporter {
     	}else if(status.equalsIgnoreCase("fail")) {
     		reportStep(desc, status, false);
     	}
-		
+    	else if(status.equalsIgnoreCase("info")) {
+    		reportStep(desc, status, false);
+    	}
 	}
 
     

@@ -19,14 +19,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ZoomCar_HomeWindow extends ZoomCar_TestNg_Base {
 	
-	Actions action = new Actions(driver);
+
 	
 	public ZoomCar_HomeWindow(RemoteWebDriver driver) {
-		System.out.println("Inside Constructor HomeWindow");
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how=How.XPATH , using= "//section[@class='location-calendar-tab'][1]") private WebElement mouseHover;
+	@FindBy(how=How.XPATH , using= "//section[@class='location-calendar-tab'][1]") private WebElement mouseHoveringLocation;
 	@FindBy (how=How.XPATH , using= "//section[@class='location-list-items']//child::section[@class='location-list-items-item']") private List<WebElement> clickLocation;
 	@FindBy(how=How.XPATH , using= "((//section[@class='calendar-v2-month'])[2]//div[@class='calendar-v2-month-dates-week-day'])[8]") private WebElement startDate;
 	@FindBy (how=How.XPATH , using= "((//section[@class='calendar-v2-month'])[2]//div[@class='calendar-v2-month-dates-week-day'])[11]") private WebElement endDate;
@@ -38,128 +37,72 @@ public class ZoomCar_HomeWindow extends ZoomCar_TestNg_Base {
 	@FindBy(how=How.XPATH , using= "//div[text()='FASTag']") private WebElement fastTag;
 	@FindBy (how=How.XPATH , using= "//div[contains(@class,'tag new')]/../..//following-sibling::section[contains(@class,'car-info')]/section[contains(@class,'info-title')]") private List<WebElement> addedCars;
 	@FindBy(how=How.XPATH , using= "//section[contains(@class,'action-rating-text') and not(contains(text(),'Not Yet Rated'))]") private List<WebElement> topRated;
-	@FindBy(how=How.XPATH , using= "//section[@class='car-item-search-container-image-container-action-rating-text']") private List<WebElement> clickRatedCar;	
-	@FindBy (how=How.XPATH , using= "//img[contains(@src, 'right-arrow')]") private WebElement clickImage;
+	@FindBy(how=How.XPATH , using= "//section[@class='car-item-search-container-image-container-action-rating-text']") private List<WebElement> clickRatedCar;
+	@FindBy (how=How.XPATH , using= "(//div[@class='carousal-list'])[1]//child::div[@class='carousal-list-image-container']") private List<WebElement> listImages;
+//	@FindBy (how=How.XPATH , using= "//img[contains(@src, 'right-arrow')]") private WebElement clickImage;
 		
 	
 	
-	public ZoomCar_HomeWindow mouseHoverLocation() throws InterruptedException {
-		wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-		wait.until(ExpectedConditions.visibilityOf (mouseHover));
-		System.out.println("Entered into the textbox");
-		action.moveToElement(mouseHover).perform();
+	public ZoomCar_HomeWindow mouseHoverLocation() {
+		mouseHover(mouseHoveringLocation);		
 		return this;
 	}
 	
-	public ZoomCar_HomeWindow clickSecondLocation() throws InterruptedException {
-		Thread.sleep(5000);
-		System.out.println("Clicked the 2nd Location");
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)", "");
-        if (clickLocation.size() > 1) {
-            WebElement secondLocation = clickLocation.get(1);
-            secondLocation.click();
-        }
+	public ZoomCar_HomeWindow clickSecondLocation() {
+		secondLocation(clickLocation);
 		return this;
 	}
 	
 	public ZoomCar_HomeWindow clickStartDateOfNextMonth() {
-		click(startDate);
+		click(startDate, " next month Start Date");
 		return this;
 	}
 	
 	public ZoomCar_HomeWindow clickEndDateOfNextMonth() {
-		click(endDate);
+		click(endDate, " next month End Date");
 		return this;
 	}
 	
-	public ZoomCar_HomeWindow moveStartDateSlider() throws InterruptedException {
-		System.out.println("In Start Date Slider");
-		Thread.sleep(5000);
-		String time = startSlider.getText();
-		System.out.println("Start Time: "+time);
-		action.clickAndHold((WebElement) startSlider);
-		action.moveByOffset(-130, 0).release().build().perform();
+	public ZoomCar_HomeWindow moveStartAndEndSlider() {
+		startAndEndSlider(startSlider, endSlider);
 		return this;
 		}
 	
-
-	public ZoomCar_HomeWindow moveEndDateSlider() throws InterruptedException {
-		System.out.println("In End Date Slider");
-		Thread.sleep(5000);
-		String time = endSlider.getText();
-		System.out.println("Start Time: "+time);
-		action.clickAndHold((WebElement) endSlider);
-		action.moveByOffset(100, 0).release().build().perform();
-		return this;
-	}
-
-	
-	public ZoomCar_HomeWindow clickSearchButton() throws InterruptedException {
-		Thread.sleep(2000);
-		click(searchButton);
-		System.out.println("Clicked Search button");
+	public ZoomCar_HomeWindow clickSearchButton() {
+		click(searchButton, " Search button");
 		return this;
 	}
 	
-	public ZoomCar_HomeWindow clickBestRated() throws InterruptedException {
-		Thread.sleep(2000);
-		click(bestRated);
-		System.out.println("Clicked Best Rated from Sort By field");
+	public ZoomCar_HomeWindow clickBestRated() {
+		click(bestRated, " Best Rated button");
 		return this;
 	}
 	
-	public ZoomCar_HomeWindow clickFuelTypePetrol() throws InterruptedException {
-		Thread.sleep(2000);
-		click(petrol);
-		System.out.println("Clicked Petrol from Fuel Type field");
+	public ZoomCar_HomeWindow clickFuelTypePetrol() {
+		click(petrol, " Petrol button");
 		return this;
 	}
 	
 	public ZoomCar_HomeWindow clickFastTag() throws InterruptedException {
-		Thread.sleep(2000);
-		click(fastTag);
-		System.out.println("Clicked FastTag from Add-ons field");
+		click(fastTag, " FastTag button");
+		Thread.sleep(3000);
 		return this;
 	}
 	
-	public ZoomCar_HomeWindow printNewlyAddedCarNames() throws InterruptedException {
-		Thread.sleep(2000);
-        for (WebElement carNames : addedCars) {
-            System.out.println(carNames.getText());
-        }
+	public ZoomCar_HomeWindow printNewlyAddedCarNames() {
+		newlyAddedCars(addedCars);
 		return this;
 	}
 	
-    public ZoomCar_HomeWindow selectMaxUserRatingCar() {
-        double maxRating = -1;
-        int maxIndex = -1;
-        for (int i = 0; i < topRated.size(); i++) {
-        	try {
-        	String ratingString[] = topRated.get(i).getText().trim().split(" ");
-        	Float ratingText = Float.parseFloat(ratingString[0]);
-            double rating = ratingText.doubleValue();
-            if (rating > maxRating) {
-                maxRating = rating;
-                maxIndex = i;
-            }
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        if (maxIndex != -1) {
-            WebElement maxRatingCar = topRated.get(maxIndex);
-            click(maxRatingCar);
-        }
-
-    }
+	public ZoomCar_HomeWindow selectMaxUserRatingCar() throws InterruptedException {
+		Thread.sleep(3000);
+		highRatedCar(topRated);
 		return this;
-    }
+		
+	}
     
 	public ZoomCar_HomeWindow clickImageNavigationButton() throws InterruptedException {
-		Thread.sleep(2000);
-		for(int i=0;i<2;i++) {
-	            click(clickImage);
-	        }
+		listOfImages(listImages);
 		return this;
 	}
 
