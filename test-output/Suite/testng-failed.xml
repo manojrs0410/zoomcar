@@ -9,6 +9,7 @@
           <include name="report"/>
           <include name="beforeMethod"/>
           <include name="startReport"/>
+          <include name="afterMethod"/>
           <include name="ZoomCar_HomeWindow"/>
           <include name="setValues"/>
           <include name="stopReport"/>
